@@ -1,4 +1,5 @@
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function TopBar() {
   return (
@@ -19,7 +20,7 @@ export default function TopBar() {
         <div className="flex items-center gap-5">
           <span className="cursor-pointer">🔍</span>
           <span className="cursor-pointer relative">
-            🛒
+          <Link to="/cart">🛒</Link>
             <span className="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full px-1">
               0
             </span>

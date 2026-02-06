@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import { products } from "../data/Products";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
+  const { addToCart } = useCart();
   const { id } = useParams();
   const product = products.find((p) => p.id === Number(id));
 
@@ -22,9 +24,20 @@ export default function ProductDetail() {
           High-quality luxury fashion product inspired by modern design.
         </p>
 
-        <button className="border border-black px-10 py-3 hover:bg-black hover:text-white transition">
+        <button
+          onClick={() =>
+            addToCart({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+            })
+          }
+          className="border border-black px-10 py-3 hover:bg-black hover:text-white transition"
+        >
           ADD TO CART
         </button>
+
       </div>
     </section>
   );
