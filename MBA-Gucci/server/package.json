@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "nodemon src/index.js"
+ "scripts": {
+  "dev": "nodemon src/index.js"
   },
-  "dependencies": {
+ "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
