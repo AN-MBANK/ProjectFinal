@@ -40,3 +40,18 @@ export const login = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      req.body,
+      { new: true }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

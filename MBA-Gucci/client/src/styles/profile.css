@@ -1,0 +1,91 @@
+/* ===== WRAPPER ===== */
+.profile-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #1c1c1c, #000000);
+  font-family: 'Playfair Display', serif;
+  padding: 40px 20px;
+}
+
+/* ===== CARD ===== */
+.profile-card {
+  width: 100%;
+  max-width: 650px;
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  border: 1px solid #c9a22733;
+  border-radius: 25px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+  position: relative;
+}
+
+/* ===== GOLD TITLE ===== */
+.profile-card h2 {
+  font-size: 32px;
+  color: #c9a227;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* ===== AVATAR ===== */
+.avatar-box {
+  margin-bottom: 20px;
+}
+
+.avatar-box img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #c9a227;
+  box-shadow: 0 0 25px rgba(201,162,39,0.5);
+}
+
+/* ===== USERNAME ===== */
+.profile-card h3 {
+  color: white;
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+/* ===== BIO ===== */
+.profile-card p {
+  color: #bbb;
+  margin: 10px 0 25px 0;
+  font-style: italic;
+}
+
+/* ===== CONTACT INFO ===== */
+.contact-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.contact-item {
+  color: #c9a227;
+  font-size: 14px;
+}
+
+/* ===== BUTTON ===== */
+.edit-btn {
+  margin-top: 40px;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #c9a227, #e6c35c);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.edit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(201,162,39,0.4);
+}
