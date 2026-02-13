@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import { Link } from "react-router-dom";
+import "../styles/product.css";
 
 
 export default function ProductList() {
@@ -17,49 +18,31 @@ export default function ProductList() {
   }, []);
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1 style={{ fontSize: "32px", marginBottom: "30px" }}>
-        Products
-      </h1>
+    <div className="container">
+      <h1 className="product-title">Products</h1>
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-        gap: "20px"
-      }}>
+      <div className="product-grid">
         {products.map(product => (
           <Link
             key={product._id}
             to={`/products/${product._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <div
-              key={product._id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "20px",
-                borderRadius: "8px"
-              }}
-            >
+            <div className="product-card">
               <img
                 src={`/images/${product.image}`}
                 alt={product.name}
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "6px",
-                  marginBottom: "10px"
-                }}
               />
 
-              <h3>{product.name}</h3>
-              <p>${product.price}</p>
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p>${product.price}</p>
+              </div>
             </div>
           </Link>
-          
         ))}
       </div>
     </div>
   );
+
 }

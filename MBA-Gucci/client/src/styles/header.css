@@ -1,0 +1,29 @@
+.header {
+  background: var(--secondary-black);
+  padding: 20px;
+  border-bottom: 1px solid #222;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}

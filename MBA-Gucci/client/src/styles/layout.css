@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  background-color: var(--primary-black);
+  color: var(--text-light);
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 20px;
+}

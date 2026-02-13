@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/api";
+import "../styles/productDetail.css";
 
 export default function ProductDetail({ cart, setCart }) {
 
@@ -36,37 +37,32 @@ export default function ProductDetail({ cart, setCart }) {
     if (!product) return <h2>Loading...</h2>;
 
     return (
-        <div style={{ padding: "40px" }}>
-            <img
-                src={`/images/${product.image}`}
-                alt={product.name}
-                style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "cover",
-                    borderRadius: "6px",
-                    marginBottom: "10px"
-                }}
-            />
-            <h2>{product.name}</h2>
-            <p>${product.price}</p>
-            <p>{product.category}</p>
-            <p>{product.description}</p>
-            <button
-                onClick={addToCart}
-                style={{
-                    marginTop: "20px",
-                    padding: "10px 20px",
-                    background: "#fff",
-                    color: "#000",
-                    border: "none",
-                    cursor: "pointer",
-                    borderRadius: "5px"
-                }}
-            >
-                Add to Cart
-            </button>
+        <div className="container">
+            <div className="product-detail">
 
+                <img
+                    src={`/images/${product.image}`}
+                    alt={product.name}
+                />
+
+                <div className="product-detail-info">
+                    <h2>{product.name}</h2>
+
+                    <div className="product-detail-price">
+                        ${product.price}
+                    </div>
+
+                    <div className="product-detail-description">
+                        {product.description}
+                    </div>
+
+                    <button className="btn-gold">
+                        Add to Cart
+                    </button>
+                </div>
+
+            </div>
         </div>
     );
+
 }
