@@ -1,32 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import api from "../api/api";
 import "../styles/productDetail.css";
+import { useCart } from "../context/CartContext";
 
-export default function ProductDetail({ cart, setCart }) {
+export default function ProductDetail() {
 
     const { id } = useParams();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState(null);
-    const addToCart = () => {
-        const existingItem = cart.find(item => item._id === product._id);
-
-        let updatedCart;
-
-        if (existingItem) {
-            updatedCart = cart.map(item =>
-                item._id === product._id
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            );
-        } else {
-            updatedCart = [...cart, { ...product, quantity: 1 }];
-        }
-
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-        alert("Added to cart!");
-    };
 
     useEffect(() => {
         api.get(`/products/${id}`)
@@ -56,13 +39,19 @@ export default function ProductDetail({ cart, setCart }) {
                         {product.description}
                     </div>
 
-                    <button className="btn-gold">
+                    <button
+                        className="btn-gold"
+                        onClick={() => {
+                            addToCart(product);
+                            toast.success("Added to cart ✨");
+                        }}
+                    >
                         Add to Cart
                     </button>
-                </div>
 
+                </div>
             </div>
         </div>
     );
-
 }
+

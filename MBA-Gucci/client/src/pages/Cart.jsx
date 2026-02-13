@@ -1,52 +1,56 @@
-import { useEffect, useState } from "react";
 
-export default function Cart({ cart, setCart }) {
+import { useCart } from "../context/CartContext";
+import api from "../api/api";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
+export default function Cart() {
+    const navigate = useNavigate();
 
-    const removeItem = (id) => {
-        const updatedCart = cart.filter(item => item._id !== id);
-
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-    };
-
-
-    const clearCart = () => {
-        localStorage.removeItem("cart");
-        setCart([]);
-    };
+    const {
+        cart,
+        removeFromCart,
+        clearCart,
+        increaseQty,
+        decreaseQty
+    } = useCart();
 
     const total = cart.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
     );
+    const checkoutHandler = async () => {
+        try {
+            const total = cart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+            );
 
-    const increaseQty = (id) => {
-        const updatedCart = cart.map(item =>
-            item._id === id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-        );
+            const orderItems = cart.map(item => ({
+                product: item._id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity
+            }));
 
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-    };
+            await api.post("/orders", {
+                items: orderItems,
+                totalPrice: total
+            });
 
-    const decreaseQty = (id) => {
-        const updatedCart = cart
-            .map(item =>
-                item._id === id
-                    ? { ...item, quantity: item.quantity - 1 }
-                    : item
-            )
-            .filter(item => item.quantity > 0);
+            clearCart();
+            toast.success("Order placed successfully ✨");
+            navigate("/orders");
 
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        } catch (error) {
+            console.log("CHECKOUT ERROR:", error.response?.data);
+            toast.error("Checkout failed");
+        }
+
     };
 
     return (
-        <div style={{ padding: "40px" }}>
+        <div className="container">
             <h1>Cart</h1>
 
             {cart.length === 0 ? (
@@ -54,30 +58,29 @@ export default function Cart({ cart, setCart }) {
             ) : (
                 <>
                     {cart.map(item => (
-                        <div
-                            key={item._id}
-                            style={{
-                                border: "1px solid #ccc",
-                                padding: "20px",
-                                marginBottom: "10px",
-                                borderRadius: "8px"
-                            }}
-                        >
+                        <div key={item._id}>
                             <h3>{item.name}</h3>
                             <p>${item.price}</p>
-                            <div>
-                                <button onClick={() => decreaseQty(item._id)}>-</button>
-                                <span style={{ margin: "0 10px" }}>
-                                    {item.quantity}
-                                </span>
-                                <button onClick={() => increaseQty(item._id)}>+</button>
-                            </div>
+
+                            <button onClick={() => decreaseQty(item._id)}>-</button>
+                            {item.quantity}
+                            <button onClick={() => increaseQty(item._id)}>+</button>
 
                             <p>Subtotal: ${item.price * item.quantity}</p>
+
+                            <button onClick={() => removeFromCart(item._id)}>
+                                Remove
+                            </button>
                         </div>
                     ))}
 
                     <h2>Total: ${total}</h2>
+                    <button
+                        className="btn-gold"
+                        onClick={checkoutHandler}
+                    >
+                        Checkout
+                    </button>
 
                     <button onClick={clearCart}>
                         Clear Cart
