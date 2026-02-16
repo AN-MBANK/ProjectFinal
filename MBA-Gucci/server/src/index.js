@@ -24,9 +24,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
  app.use("/api/orders", orderRoutes);
 app.get("/", (req, res) => {
-  res.send("API Gucci is running");
- 
+  res.send("Backend is running 🚀");
 });
+
 
 mongoose
   .connect(process.env.MONGO_URI)
