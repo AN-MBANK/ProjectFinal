@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({
+const api = axios.create({
   baseURL: "https://projectfinal-x0b1.onrender.com"
 });
-
-
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
