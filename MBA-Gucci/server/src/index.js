@@ -10,10 +10,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://your-frontend-domain.vercel.app"
-  ],
+  origin: "https://project-final-brown.vercel.app",
   credentials: true
 }));
 
