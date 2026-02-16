@@ -8,7 +8,7 @@ export default function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    api.get("/products")
+    api.get("/api/products")
       .then(res => {
         setProducts(res.data);
       })

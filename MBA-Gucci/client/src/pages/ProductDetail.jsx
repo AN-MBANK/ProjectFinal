@@ -12,7 +12,7 @@ export default function ProductDetail() {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        api.get(`/products/${id}`)
+        api.get(`/api/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err));
     }, [id]);

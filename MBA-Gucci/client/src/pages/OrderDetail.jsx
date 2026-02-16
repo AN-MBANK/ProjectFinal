@@ -8,7 +8,7 @@ export default function OrderDetail() {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      const { data } = await api.get(`/orders/${id}`);
+      const { data } = await api.get(`/api/orders/${id}`);
       setOrder(data);
     };
 
