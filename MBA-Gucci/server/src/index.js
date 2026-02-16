@@ -11,15 +11,10 @@ const app = express();
 
 
 app.use(cors({
-  origin: [
-    "https://project-final-brown.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: true, // cho phép mọi origin
   credentials: true
 }));
 
-// QUAN TRỌNG
 app.options(/.*/, cors());
 app.use(cors());
 
