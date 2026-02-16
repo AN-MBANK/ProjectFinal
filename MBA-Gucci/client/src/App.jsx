@@ -10,6 +10,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import Payment from "./pages/Payment";
+import OrderDetail from "./pages/OrderDetail";
 import "./styles/variables.css";
 import "./styles/layout.css";
 import "./styles/button.css";
@@ -42,8 +44,9 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/orders" element={<Orders />} />
-
-
+        <Route path="/orders/:id" element={<OrderDetail />} />
+        <Route path="/payment" element={<Payment />} />
+        
       </Routes>
     </BrowserRouter>
   );

@@ -40,7 +40,7 @@ export default function Cart() {
 
             clearCart();
             toast.success("Order placed successfully ✨");
-            navigate("/orders");
+            navigate("/payment");
 
         } catch (error) {
             console.log("CHECKOUT ERROR:", error.response?.data);
@@ -77,10 +77,11 @@ export default function Cart() {
                     <h2>Total: ${total}</h2>
                     <button
                         className="btn-gold"
-                        onClick={checkoutHandler}
+                        onClick={() => navigate("/payment")}
                     >
                         Checkout
                     </button>
+
 
                     <button onClick={clearCart}>
                         Clear Cart
