@@ -11,12 +11,16 @@ const app = express();
 
 
 app.use(cors({
-  origin: "https://project-final-brown.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: [
+    "https://project-final-brown.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 
+// QUAN TRỌNG
+app.options(/.*/, cors());
 app.use(cors());
 
 app.use(express.json({ limit: "10mb" }));
