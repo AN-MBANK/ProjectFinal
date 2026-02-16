@@ -22,7 +22,7 @@ export default function Payment() {
         quantity: item.quantity
       }));
 
-      await api.post("/orders", {
+      await api.post("/api/orders", {
         items: orderItems,
         totalPrice: total
       });
